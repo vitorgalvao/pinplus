@@ -1,0 +1,18 @@
+{
+  "name": "PinPlus",
+  "version": "1.0.0",
+  "bundleID": "com.vitorgalvao.pinplus",
+  "description": "Use a CLI to call a GUI to add Pinboard bookmarks",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js",
+    "build": "npm run build-macos",
+    "build-macos": "electron-packager . $npm_package_name --overwrite --prune --platform=darwin --arch=x64 --app-bundle-id=$npm_package_bundleId --app-version=$npm_package_version --icon=../icon/icon.icns && /usr/libexec/PlistBuddy -c 'add LSUIElement string 1' pinplus-darwin-x64/pinplus.app/Contents/Info.plist"
+  },
+  "author": "Vítor Galvão",
+  "license": "Unlicense",
+  "devDependencies": {
+    "electron": "^1.6.2",
+    "electron-packager": "^8.5.2"
+  }
+}

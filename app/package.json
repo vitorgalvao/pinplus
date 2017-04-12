@@ -9,6 +9,10 @@
     "build": "npm run build-macos",
     "build-macos": "electron-packager . $npm_package_name --overwrite --prune --platform=darwin --arch=x64 --app-bundle-id=$npm_package_bundleId --app-version=$npm_package_version --icon=../icon/icon.icns && /usr/libexec/PlistBuddy -c 'add LSUIElement string 1' pinplus-darwin-x64/pinplus.app/Contents/Info.plist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitorgalvao/pinplus.git"
+  },
   "author": "Vítor Galvão",
   "license": "Unlicense",
   "devDependencies": {

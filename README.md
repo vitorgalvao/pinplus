@@ -18,7 +18,7 @@ Pinplus works by loading [Pinboard’s add a link page](https://pinboard.in/add)
 While you can simply open PinPlus and add a bookmark from there, it’s meant to be called with its CLI:
 
 ```bash
-PinPlus.app/Contents/MacOS/pinplus "{{page_url}}" "{{page_title}}"
+PinPlus.app/Contents/MacOS/PinPlus "{{page_url}}" "{{page_title}}"
 ```
 
 In conjunction with the [AppleScript and JavaScript for Automation to get frontmost tab’s url and title of various browsers gist](https://gist.github.com/vitorgalvao/5392178), you can easily grab the required information from the active tab of your frontmost browser to automated filling the details.

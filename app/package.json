@@ -2,7 +2,7 @@
   "name": "pinplus",
   "productName": "PinPlus",
   "version": "1.0.0",
-  "bundleID": "com.vitorgalvao.pinplus",
+  "bundleId": "com.vitorgalvao.pinplus",
   "description": "Use a CLI to call a GUI to add Pinboard bookmarks",
   "main": "main.js",
   "scripts": {

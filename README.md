@@ -5,8 +5,6 @@ To support my continued open-source work, pick a method:
 
 # <img src='https://i.imgur.com/4cX4Eex.png' width='45' align='center' alt='PinPlus logo'> PinPlus
 
-### PinPlus
-
 Use a CLI to call a GUI to add Pinboard bookmarks. Built for use with the [PinPlus Alfred Workflow](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinPlus).
 
 ![](https://i.imgur.com/NasZq96.png)

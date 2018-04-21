@@ -20,11 +20,11 @@ While you can simply open PinPlus and add a bookmark from there, it’s meant to
 PinPlus.app/Contents/MacOS/PinPlus "{{page_url}}" "{{page_title}}"
 ```
 
-In conjunction with the [AppleScript and JavaScript for Automation to get frontmost tab’s url and title of various browsers gist](https://gist.github.com/vitorgalvao/5392178), you can easily grab the required information from the active tab of your frontmost browser to automated filling the details.
+In conjunction with the [AppleScript and JavaScript for Automation to get frontmost tab’s url and title of various browsers gist](https://gist.github.com/vitorgalvao/5392178), you can easily grab the required information from the active tab of your frontmost browser to automate filling the details.
 
 ## Install
 
-[Download the latest version](https://github.com/vitorgalvao/pinplus/releases), or install via the [PinPlus Alfred Workflow](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinPlus).
+[Download the latest version](https://github.com/vitorgalvao/pinplus/releases).
 
 ## Development
 

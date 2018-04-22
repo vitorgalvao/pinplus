@@ -17,7 +17,7 @@
   "author": "Vítor Galvão",
   "license": "Unlicense",
   "devDependencies": {
-    "electron": "^1.6.2",
     "electron-packager": "^8.5.2"
+    "electron": "^1.8.4",
   }
 }

@@ -6,7 +6,7 @@ To support my continued open-source work, pick a method:
 
 # <img src='https://i.imgur.com/4cX4Eex.png' width='45' align='center' alt='PinPlus logo'> PinPlus
 
-Use a CLI to call a GUI to add Pinboard bookmarks. Built for use with the [PinPlus Alfred Workflow](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinPlus).
+GUI to add Pinboard bookmarks, controllable via CLI. Built for use with the [PinPlus Alfred Workflow](https://github.com/vitorgalvao/alfred-workflows/tree/master/PinPlus), but works just as well as a standalone app.
 
 ![](https://i.imgur.com/NasZq96.png)
 
@@ -14,13 +14,11 @@ Use a CLI to call a GUI to add Pinboard bookmarks. Built for use with the [PinPl
 
 Pinplus works by loading [Pinboard’s add a link page](https://pinboard.in/add) with your given parameters to auto-fill options and a few style modifications. The first time you open it, you’ll need to login to your Pinboard account.
 
-While you can simply open PinPlus and add a bookmark from there, it’s meant to be called with its CLI:
+If you open PinPlus with a web browser as your frontmost app, it’ll grab the URL and title directly from the page. You can also give it a URL and title from the command line:
 
 ```bash
 PinPlus.app/Contents/MacOS/PinPlus "{{page_url}}" "{{page_title}}"
 ```
-
-In conjunction with the [AppleScript and JavaScript for Automation to get frontmost tab’s url and title of various browsers gist](https://gist.github.com/vitorgalvao/5392178), you can easily grab the required information from the active tab of your frontmost browser to automate filling the details.
 
 ## Install
 

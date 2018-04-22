@@ -2,6 +2,7 @@ const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const url = require('url')
+const execSync = require('child_process').execSync
 
 let mainWindow
 
@@ -37,14 +38,40 @@ const template = [{
   }]
 }]
 
+function getUrlTitle(pageUrl, pageTitle) {
+  if (pageUrl) return [pageUrl, pageTitle]
+
+  // If no arguments are given, try to get info from frontmost browser
+  return execSync(`/usr/bin/osascript -l JavaScript -e "
+    const frontmost_app_name = Application('System Events').applicationProcesses.where({ frontmost: true }).name()[0]
+    const frontmost_app = Application(frontmost_app_name)
+
+    if (['Google Chrome','Google Chrome Canary','Chromium','Opera','Vivaldi'].indexOf(frontmost_app_name) > -1) {
+      var current_tab_title = frontmost_app.windows[0].activeTab.name()
+      var current_tab_url = frontmost_app.windows[0].activeTab.url()
+    } else if (['Safari','Safari Technology Preview','Webkit'].indexOf(frontmost_app_name) > -1) {
+      var current_tab_title = frontmost_app.documents[0].name()
+      var current_tab_url = frontmost_app.documents[0].url()
+    } else {
+      var current_tab_title = ''
+      var current_tab_url = ''
+    }
+
+    current_tab_url + '|' + current_tab_title
+  "`).toString().trim().split('|')
+}
+
 function createWindow() {
   mainWindow = new BrowserWindow({width: 540, height: 306, maxWidth: 540, maxHeight: 306, frame: false, alwaysOnTop: true})
+
+  // Try to get url and title from CLI arguments
+  const pageInfo = getUrlTitle(process.argv[1], process.argv[2])
 
   mainWindow.loadURL(url.format({
     hostname: 'pinboard.in',
     pathname: 'add',
     // For testing, increase array positions by one
-    search: 'url=' + process.argv[1] + '&title=' + process.argv[2],
+    search: 'url=' + pageInfo[0] + '&title=' + pageInfo[1],
     protocol: 'https:',
     slashes: true
   }))

@@ -59,7 +59,7 @@ function getUrlTitle(pageUrl, pageTitle) {
 }
 
 function createWindow() {
-  mainWindow = new BrowserWindow({width: 540, height: 306, maxWidth: 540, maxHeight: 306, frame: false, alwaysOnTop: true})
+  mainWindow = new BrowserWindow({ width: 540, height: 306, maxWidth: 540, maxHeight: 306, frame: false, alwaysOnTop: true })
 
   // Try to get url and title from CLI arguments
   const pageInfo = getUrlTitle(process.argv[1], process.argv[2])
@@ -75,13 +75,13 @@ function createWindow() {
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 
-  mainWindow.webContents.on('did-finish-load', function() {
+  mainWindow.webContents.on('did-finish-load', function () {
     mainWindow.webContents.executeJavaScript('descCell = document.getElementsByTagName("td")[4];if (descCell.innerHTML === "description") descCell.innerHTML = "desc"')
     mainWindow.webContents.insertCSS('#popup_header{-webkit-user-select:none;-webkit-app-region:drag}')
     mainWindow.webContents.insertCSS('body{background-color:#f1f1f1;font-family:-apple-system,BlinkMacSystemFont,sans-serif}a{color:#88a80d}td{color:dimgrey}input,textarea{border:0;padding:8px;border-radius:4px}textarea{max-width:425px}input:focus,textarea:focus{outline:2px solid #88a80d}input[type=submit]{width:440px;background-color:#88a80d;color:white}input[name=username],input[name=password]{width:424px}.bd{border:none !important}.match{color:dimgrey !important}.active{color:white !important;background-color:#88a80d !important}') // Style the page. If removing this, height should be set to 252 and width to 546
   });
 
-  mainWindow.on('closed', function() {
+  mainWindow.on('closed', function () {
     mainWindow = null
     app.quit()
   })

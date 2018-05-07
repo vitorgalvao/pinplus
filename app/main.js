@@ -1,12 +1,9 @@
-const electron = require('electron')
-const app = electron.app
-const BrowserWindow = electron.BrowserWindow
+const { app, BrowserWindow, Menu } = require('electron')
 const url = require('url')
 const execSync = require('child_process').execSync
 
 let mainWindow
 
-const Menu = electron.Menu
 const template = [{
   label: 'Edit',
   submenu: [{

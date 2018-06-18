@@ -62,6 +62,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({ width: 540, height: 306, maxWidth: 540, maxHeight: 306, frame: false, alwaysOnTop: true })
 
   // Try to get url and title from CLI arguments
+  if (process.defaultApp) process.argv.shift(); // Normalise argument positions when running with electron and built app
   const pageInfo = getUrlTitle(process.argv[1], process.argv[2])
 
   mainWindow.loadURL(url.format({

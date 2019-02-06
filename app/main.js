@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, globalShortcut, Menu } = require('electron')
 const url = require('url')
 const execSync = require('child_process').execSync
 
@@ -68,7 +68,6 @@ function createWindow() {
   mainWindow.loadURL(url.format({
     hostname: 'pinboard.in',
     pathname: 'add',
-    // For testing, increase array positions by one
     search: 'url=' + pageInfo[0] + '&title=' + pageInfo[1],
     protocol: 'https:',
     slashes: true
@@ -76,16 +75,13 @@ function createWindow() {
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template))
 
-  mainWindow.webContents.on('did-finish-load', function () {
+  mainWindow.webContents.on('did-finish-load', function() {
     mainWindow.webContents.executeJavaScript('descCell = document.getElementsByTagName("td")[4];if (descCell.innerHTML === "description") descCell.innerHTML = "desc"')
     mainWindow.webContents.insertCSS('#popup_header{-webkit-user-select:none;-webkit-app-region:drag}')
     mainWindow.webContents.insertCSS('body{background-color:#f1f1f1;font-family:-apple-system,BlinkMacSystemFont,sans-serif}a{color:#88a80d}td{color:dimgrey}input,textarea{border:0;padding:8px;border-radius:4px}textarea{max-width:425px}input:focus,textarea:focus{outline:2px solid #88a80d}input[type=submit]{width:440px;background-color:#88a80d;color:white}input[name=username],input[name=password]{width:424px}.bd{border:none !important}.match{color:dimgrey !important}.active{color:white !important;background-color:#88a80d !important}') // Style the page. If removing this, height should be set to 252 and width to 546
   });
 
-  mainWindow.on('closed', function () {
-    mainWindow = null
-    app.quit()
-  })
+  globalShortcut.register('Escape', function() { app.quit() })
 }
 
 app.on('ready', createWindow)

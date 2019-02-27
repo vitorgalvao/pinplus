@@ -3,6 +3,7 @@ const url = require('url')
 const execSync = require('child_process').execSync
 
 let mainWindow
+const grey_bf = '#f1f1f1'
 
 const template = [{
   label: 'Edit',
@@ -58,8 +59,17 @@ function getUrlTitle(pageUrl, pageTitle) {
   "`).toString().trim().split('|')
 }
 
-function createWindow() {
-  mainWindow = new BrowserWindow({ width: 540, height: 306, maxWidth: 540, maxHeight: 306, frame: false, alwaysOnTop: true })
+app.on('ready', function() {
+  mainWindow = new BrowserWindow({
+    width: 540,
+    height: 306,
+    maxWidth: 540,
+    maxHeight: 306,
+    frame: false,
+    backgroundColor: grey_bf,
+    alwaysOnTop: true,
+    show: false // Avoid initial flash of no content by not showing window on start
+  })
 
   // Try to get url and title from CLI arguments
   if (process.defaultApp) process.argv.shift(); // Normalise argument positions when running with electron and built app
@@ -78,10 +88,10 @@ function createWindow() {
   mainWindow.webContents.on('did-finish-load', function() {
     mainWindow.webContents.executeJavaScript('descCell = document.getElementsByTagName("td")[4];if (descCell.innerHTML === "description") descCell.innerHTML = "desc"')
     mainWindow.webContents.insertCSS('#popup_header{-webkit-user-select:none;-webkit-app-region:drag}')
-    mainWindow.webContents.insertCSS('body{background-color:#f1f1f1;font-family:-apple-system,BlinkMacSystemFont,sans-serif}a{color:#88a80d}td{color:dimgrey}#title>a{pointer-events:none}input,textarea{border:0;padding:8px;border-radius:4px}textarea{max-width:425px}input:focus,textarea:focus{outline:2px solid #88a80d}input[type=submit]{width:440px;background-color:#88a80d;color:white}input[name=username],input[name=password]{width:424px}.bd{border:none !important}.match{color:dimgrey !important}.active{color:white !important;background-color:#88a80d !important}') // Style the page. If removing this, height should be set to 252 and width to 546
-  });
+    mainWindow.webContents.insertCSS('body{background-color:' + grey_bf + ';font-family:-apple-system,BlinkMacSystemFont,sans-serif}a{color:#88a80d}td{color:dimgrey}#title>a{pointer-events:none}input,textarea{border:0;padding:8px;border-radius:4px}textarea{max-width:425px}input:focus,textarea:focus{outline:2px solid #88a80d}input[type=submit]{width:440px;background-color:#88a80d;color:white}input[name=username],input[name=password]{width:424px}.bd{border:none !important}.match{color:dimgrey !important}.active{color:white !important;background-color:#88a80d !important}') // Style the page. If removing this, height should be set to 252 and width to 546
+
+    mainWindow.show() // Show window after content loads
+  })
 
   globalShortcut.register('Escape', function() { app.quit() })
-}
-
-app.on('ready', createWindow)
+})

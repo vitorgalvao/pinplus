@@ -1,6 +1,6 @@
 {
   "name": "pinplus",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "GUI to add Pinboard bookmarks, controllable via CLI",
   "build": {
     "appId": "com.vitorgalvao.pinplus",
@@ -28,7 +28,7 @@
   "author": "Vítor Galvão",
   "license": "Unlicense",
   "devDependencies": {
-    "electron": "^4.0.6",
-    "electron-builder": "^20.38.5"
+    "electron": "^5.0.1",
+    "electron-builder": "^20.40.2"
   }
 }
